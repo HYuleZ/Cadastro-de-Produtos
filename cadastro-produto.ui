@@ -99,7 +99,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -120,7 +120,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -141,7 +141,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="styleSheet">
