@@ -115,7 +115,7 @@ def editar_dados():
 app=QtWidgets.QApplication([])
 formulario = uic.loadUi("cadastro-produto.ui")
 listar_dados = uic.loadUi("listar-produtos.ui")
-tela_editar = uic.loadUi("menu_editar")
+tela_editar = uic.loadUi("menu_editar.ui")
 formulario.pushButton.clicked.connect(funcao_principal)
 formulario.pushButton_2.clicked.connect(segunda_tela)
 listar_dados.pushButton.clicked.connect(gerar_pdf)
