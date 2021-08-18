@@ -2,6 +2,8 @@ from PyQt5 import uic,QtWidgets
 import mysql.connector
 from reportlab.pdfgen import canvas
 
+numero_id = 0
+
 bd = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -98,6 +100,7 @@ def excluir_dados():
 
 
 def editar_dados():
+    global numero_id
     linha = listar_dados.tableWidget.currentRow()
     cursor = bd.cursor()
     cursor.execute("SELECT id FROM produtos")
@@ -111,6 +114,20 @@ def editar_dados():
     tela_editar.lineEdit_3.setText(str(produto[0][2]))
     tela_editar.lineEdit_4.setText(str(produto[0][3]))
     tela_editar.lineEdit_5.setText(str(produto[0][3]))
+    numero_id = valor_id
+
+
+def salvar_dados_editados():
+    global numero_id
+
+    codigo = tela_editar.lineEdit_2.text()
+    descricao = tela_editar.lineEdit_3.text()
+    preco = tela_editar.lineEdit_4.text()
+    categoria = tela_editar.lineEdit_5.text()
+    cursor = bd.cursor()
+    cursor.execute("UPDATE produtos SET codigo = '{}', descricao = '{}', preco = '{}', categoria = '{}' WHERE id = '{}'".format(codigo, descricao, preco, categoria, numero_id))
+    tela_editar.close()
+    segunda_tela()
 
 app=QtWidgets.QApplication([])
 formulario = uic.loadUi("cadastro-produto.ui")
@@ -121,6 +138,7 @@ formulario.pushButton_2.clicked.connect(segunda_tela)
 listar_dados.pushButton.clicked.connect(gerar_pdf)
 listar_dados.pushButton_2.clicked.connect(excluir_dados)
 listar_dados.pushButton_3.clicked.connect(editar_dados)
+tela_editar.pushButton_4.clicked.connect(salvar_dados_editados)
 
 formulario.show()
 app.exec()
